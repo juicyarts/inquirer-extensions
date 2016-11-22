@@ -1,0 +1,7 @@
+engines: 
+  eslint:
+    enabled: true
+    config:
+      config: .eslintrc
+    extensions:
+      - .es6

@@ -33,6 +33,22 @@
     "uglify-js": "^2.7.4",
     "util": "^0.10.3"
   },
+  "keywords": [
+    "inquirer",
+    "multi"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juicyarts/inquirer-extensions"
+  },
+  "bugs": {
+    "url": "https://github.com/juicyarts/inquirer-extensions/issues"
+  },
+  "author": "Huess Yil <huess@juicyarts.de> (https://github.com/juicyarts)",
+  "license": {
+    "tpye": "MIT",
+    "url": ""
+  },
   "standard": {
     "env": {
       "mocha": true,
