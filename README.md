@@ -3,3 +3,8 @@
 
 Work in progress. This repos main purpose is to provide extensions for [inquirer](https://www.npmjs.com/package/inquirer).
 Documentation coming soon.
+
+
+Preview for multiInput:
+
+[![asciicast](https://asciinema.org/a/4maz4jgy05v86q98jjmbbq4a4.png)](https://asciinema.org/a/4maz4jgy05v86q98jjmbbq4a4)
