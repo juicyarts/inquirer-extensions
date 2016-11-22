@@ -79,6 +79,15 @@ describe('`multiInput` prompt', function () {
     rl.emit('line', 'bar')
     rl.emit('line', 'baz')
   })
+  it('should display additional info when arrow down with empty input', function (done) {
+    multiInput = new MultiInput(fixture, rl)
+
+    multiInput.run()
+    rl.moveDown()
+    expect(rl.output.__raw__).to.contain('You need to pass an argument or complete the process')
+    done()
+
+  })
   afterEach(function () {
     rl.output.clear()
   })

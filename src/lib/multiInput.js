@@ -37,6 +37,9 @@ Prompt.prototype._run = function (cb) {
   var keyDown = events.keypress.filter(function (evt) {
     return evt.key.name === 'down'
   }).share()
+  var keyPress = events.keypress.filter(function (evt) {
+    return evt.key.name !== 'down'
+  }).share()
 
   var submit = events.line.map(this.filterInput.bind(this))
   var validation = this.handleSubmitEvents(submit)
@@ -45,7 +48,7 @@ Prompt.prototype._run = function (cb) {
   validation.error.forEach(this.onError.bind(this))
 
   keyDown.takeUntil(validation.success).forEach(this.onAddKey.bind(this))
-  events.keypress.takeUntil(validation.success).forEach(this.onKeypress.bind(this))
+  keyPress.takeUntil(validation.success).forEach(this.onKeypress.bind(this))
 
   cliCursor.hide()
   this.render()
@@ -64,7 +67,7 @@ Prompt.prototype.render = function (error) {
   if (this.status === 'answered') {
     message += chalk.cyan(this.answer)
   } else {
-    if (this.opt.choices) {
+    if (this.opt.choices && this.opt.choices.length > 0) {
       var choicesStr = renderValues(this.opt.choices, this.pointer)
       message += '\n' + this.paginator.paginate(choicesStr, this.opt.pageSize)
     }
@@ -76,7 +79,6 @@ Prompt.prototype.render = function (error) {
     message += '\n'
     message += chalk.blue('>> ') + this.rl.line
   }
-
   if (error) {
     bottomContent = chalk.red('>> ') + error
   }
@@ -91,7 +93,10 @@ Prompt.prototype.validate = function () {}
  */
 Prompt.prototype.filterInput = function (input) {
   if (input && input.length > 0) {
-    this.onAddKey(input)
+    var ob = {
+      value: input
+    }
+    this.onAddKey(ob)
   } else {
     return []
   }
@@ -143,21 +148,26 @@ Prompt.prototype.onKeypress = function () {
 
 /** when user presses arrow down */
 Prompt.prototype.onAddKey = function (input) {
-  if (this.rl.line.length > 0 || input) {
+  var newInput = this.rl.line
+  if(!newInput){
+    newInput = input.value
+  }
+  if (newInput) {
     this.emptyAddition = false
     this.choices = this.choices || []
     if (!this.opt.choices) {
-      this.choices.push(new Choice(this.rl.line || input))
+      this.choices.push(new Choice(this.rl.line || newInput, this.answers))
       this.choices.push(new Separator())
       this.opt.choices = new Choices(this.choices, this.answers)
     } else {
-      this.choices.unshift(new Choice(this.rl.line || input))
+      this.choices.unshift(new Choice(this.rl.line || newInput, this.answers))
       this.opt.choices = new Choices(this.choices, this.answers)
     }
     this.rl.clearLine()
   } else {
     this.emptyAddition = true
   }
+  this.onKeypress()
 }
 
 /**
