@@ -149,7 +149,7 @@ Prompt.prototype.onKeypress = function () {
 /** when user presses arrow down */
 Prompt.prototype.onAddKey = function (input) {
   var newInput = this.rl.line
-  if(!newInput){
+  if (!newInput) {
     newInput = input.value
   }
   if (newInput) {
