@@ -1,5 +1,5 @@
 var inquirer = require('inquirer')
-inquirer.registerPrompt('directory', require('../src/lib/multiDir.js'))
+inquirer.registerPrompt('multiDir', require('../src/inquirer-extensions').multiDir)
 
 inquirer.prompt([{
   type: 'multiDir',

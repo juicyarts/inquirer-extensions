@@ -2,7 +2,7 @@
   "name": "inquirer-extensions",
   "version": "0.1.0",
   "description": "extensions for inquirere, multiInput, multiDir, multiFile",
-  "main": "src/index.js",
+  "main": "src/inquirer-extensions.js",
   "directories": {
     "example": "example",
     "test": "test"
@@ -10,7 +10,7 @@
   "scripts": {
     "test": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --  test/spec/**/*.js -R spec",
     "lint": "./node_modules/.bin/standard src/**/*.js test/**/*.js",
-    "docs": "rm docs/api.md && ./node_modules/.bin/jsdoc2md src/*.js >> docs/api.md",
+    "docs": "rm docs/api.md && ./node_modules/.bin/jsdoc2md src/**/*.js >> docs/api.md",
     "build": "npm run lint && npm run test && npm run docs"
   },
   "author": "Huess Yil <huess@juicyarts.de> (http://www.juicyarts.de)",

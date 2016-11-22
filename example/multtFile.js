@@ -1,5 +1,5 @@
 var inquirer = require('inquirer')
-inquirer.registerPrompt('directory', require('../src/lib/multiFile.js'))
+inquirer.registerPrompt('multiFile', require('../src/inquirer-extensions').multiFile)
 
 inquirer.prompt([{
   type: 'multiFile',

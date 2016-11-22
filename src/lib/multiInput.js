@@ -14,7 +14,7 @@ var _ = require('lodash')
 module.exports = Prompt
 
 /**
- * Construtct
+ * Constructor
  */
 function Prompt () {
   Base.apply(this, arguments)
@@ -173,8 +173,7 @@ Prompt.prototype.onAddKey = function (input) {
 /**
  * render Values
  * @param {Array} choices
- * @param {any} pointer
- * @returns
+ * @returns {String} coontaining Output
  */
 function renderValues (choices) {
   var output = ''

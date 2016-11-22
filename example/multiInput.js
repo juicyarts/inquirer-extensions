@@ -1,5 +1,5 @@
 var inquirer = require('inquirer')
-inquirer.registerPrompt('multiInput', require('../src/lib/multiInput.js'))
+inquirer.registerPrompt('multiInput', require('../src/inquirer-extensions').multiInput)
 
 inquirer.prompt([{
   type: 'multiInput',
